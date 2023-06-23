@@ -31,4 +31,4 @@ BSD
 
 ## Author Information
 
-Emmanuel Jaep (emanuel (dot) jaep (at) epfl (dot) ch)
+Emmanuel Jaep (emmanuel (dot) jaep (at) epfl (dot) ch)
