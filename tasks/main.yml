@@ -1,0 +1,38 @@
+---
+- name: "Install the required packages"
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - sssd-ldap
+    - ldap-utils
+
+- name: "Configure sssd to use LDAP"
+  ansible.builtin.template:
+    src: sssd.conf.j2
+    dest: /etc/sssd/sssd.conf
+    owner: root
+    group: root
+    mode: 0600
+  register: sssd_conf
+
+- name: "Restart sssd if the configuration changed"
+  ansible.builtin.service:
+    name: sssd
+    state: restarted
+  when: sssd_conf.changed
+
+- name: "Configure the automatic home creation"
+  ansible.builtin.shell: |
+    pam-auth-update --enable mkhomedir
+  changed_when: false
+
+- name: "Set sudoers (IC-IT-unit and {{ trusted_group_name }})"
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers
+    line: "%{{ item }} ALL=(ALL) NOPASSWD:ALL"
+    state: present
+    validate: "visudo -cf %s"
+  with_items:
+    - "{{ trusted_group_name }}"
+    - "IC-IT-unit"

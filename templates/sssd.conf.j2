@@ -1,0 +1,18 @@
+[sssd]
+config_file_version = 2
+domains = epfl.ch
+
+[domain/epfl.ch]
+access_provider = ldap
+auth_provider = ldap
+cache_credentials = True
+id_provider = ldap
+ldap_access_filter = (|(memberOf={{ trusted_group_id}})(memberOf=S11914))
+ldap_group_gid_number = gidNumber
+ldap_group_name = cn
+ldap_group_object_class = EPFLGroupOfPersons
+ldap_search_base = o=epfl,c=ch
+ldap_uri = ldap://scoldap.epfl.ch
+ldap_user_gid_number = gidNumber
+ldap_user_name = uid
+ldap_user_uid_number = uidNumber
