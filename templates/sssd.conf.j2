@@ -7,7 +7,7 @@ access_provider = ldap
 auth_provider = ldap
 cache_credentials = True
 id_provider = ldap
-ldap_access_filter = (|(memberOf={{ trusted_group_id}})(memberOf=S09213))
+ldap_access_filter = (|(memberOf={{ login_group_id}})(memberOf=S09213))
 ldap_group_gid_number = gidNumber
 ldap_group_name = cn
 ldap_group_object_class = EPFLGroupOfPersons

@@ -1,3 +1,5 @@
 ---
 trusted_group_name: "IC-IT-unit"
-trusted_group_id: "S11914"
+trusted_group_id: "S09213"
+sudo_group_name: "{{ trusted_group_name }}"
+login_group_id: "{{ trusted_group_id }}"

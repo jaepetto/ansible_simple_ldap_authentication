@@ -8,10 +8,10 @@ None
 
 ## Role Variables
 
-| Variable           | Description                                    | Default value |
-| ------------------ | ---------------------------------------------- | ------------- |
-| trusted_group_name | The name of the group that is allowed to login | IC-IT-Unit    |
-| trusted_group_id   | The id of the group that is allowed to login   | S11914        |
+| Variable        | Description                                  | Default value |
+| --------------- | -------------------------------------------- | ------------- |
+| login_group_id  | The id of the group that is allowed to login | S09213        |
+| sudo_group_name | The name of the group that has sudo rights   | IC-IT-Unit    |
 
 ## Dependencies
 
@@ -23,7 +23,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: ic_it.simple_ldap_authentication, trusted_group_name: IC-IT-Unit, trusted_group_id: S11914 }
+         - { role: ic_it.simple_ldap_authentication, sudo_group_name: IC-IT-Unit, login_group_id: S09213 }
 
 ## License
 

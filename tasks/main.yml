@@ -27,12 +27,12 @@
     pam-auth-update --enable mkhomedir
   changed_when: false
 
-- name: "Set sudoers (IC-IT-unit and {{ trusted_group_name }})"
+- name: "Set sudoers (IC-IT-unit and {{ sudo_group_name }})"
   ansible.builtin.lineinfile:
     path: /etc/sudoers
     line: "%{{ item }} ALL=(ALL) NOPASSWD:ALL"
     state: present
     validate: "visudo -cf %s"
   with_items:
-    - "{{ trusted_group_name }}"
+    - "{{ sudo_group_name }}"
     - "IC-IT-unit"
